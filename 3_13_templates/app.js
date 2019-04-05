@@ -1,6 +1,11 @@
 const express = require("express");
+const exphbs = require("express-handlebars");
 
 const app = express();
+
+// Handlebars middlware
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // How middleware works
 app.use(function(req, res, next) {
@@ -12,12 +17,12 @@ app.use(function(req, res, next) {
 // Index route
 app.get("/", (req, res) => {
   console.log(req.name);
-  res.send("INDEX");
+  res.render("index");
 });
 
 // About page
 app.get("/about", (req, res) => {
-  res.send("ABOUT2");
+  res.render("about");
 });
 
 const port = 5000;
