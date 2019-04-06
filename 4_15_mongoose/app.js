@@ -1,7 +1,16 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const mongoose = require("mongoose");
 
 const app = express();
+
+// map global promise - get rid of deprication warning
+mongoose.Promise = global.Promise;
+// connect to mongoose
+mongoose
+  .connect("mongodb://localhost/vidjot-dev", { useMongoClient: true })
+  .then(() => console.log("Mongodb connected.."))
+  .catch(err => console.log(err));
 
 // Handlebars middlware
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
