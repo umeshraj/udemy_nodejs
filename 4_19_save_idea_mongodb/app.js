@@ -15,7 +15,7 @@ mongoose
 
 // Load the idea model
 require("./models/Idea");
-const idea = mongoose.model("ideas");
+const Idea = mongoose.model("ideas");
 
 // Handlebars middlware
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -69,6 +69,15 @@ app.post("/ideas", (req, res) => {
       details: req.body.details
     });
   } else {
+    console.log("Saving to db");
+    const newUser = {
+      title: req.body.title,
+      details: req.body.details
+    };
+    new Idea(newUser).save().then(idea => {
+      res.redirect("/ideas");
+    });
+
     res.send("passed");
   }
   // console.log(req.body);
