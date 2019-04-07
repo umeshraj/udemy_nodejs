@@ -1,5 +1,6 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -19,6 +20,12 @@ const idea = mongoose.model("ideas");
 // Handlebars middlware
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+// body parser middleware
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
 // How middleware works
 app.use(function(req, res, next) {
@@ -44,6 +51,12 @@ app.get("/about", (req, res) => {
 // Add idea form
 app.get("/ideas/add", (req, res) => {
   res.render("ideas/add");
+});
+
+// Process form
+app.post("/ideas", (req, res) => {
+  console.log(req.body);
+  res.send("ok");
 });
 
 const port = 5000;
