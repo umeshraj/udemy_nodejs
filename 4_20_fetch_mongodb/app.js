@@ -50,7 +50,14 @@ app.get("/about", (req, res) => {
 
 // Idea index page
 app.get("/ideas", (req, res) => {
-  res.render("ideas/index");
+  Idea.find({})
+    .sort({ date: "desc" })
+    .then(ideas => {
+      console.log(ideas);
+      res.render("ideas/index", {
+        ideas: ideas
+      });
+    });
 });
 
 // Add idea form
@@ -83,7 +90,7 @@ app.post("/ideas", (req, res) => {
       res.redirect("/ideas");
     });
 
-    res.send("passed");
+    // res.send("passed");
   }
   // console.log(req.body);
   // res.send("ok");
