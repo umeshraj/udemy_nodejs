@@ -48,6 +48,11 @@ app.get("/about", (req, res) => {
   res.render("about");
 });
 
+// Idea index page
+app.get("/ideas", (req, res) => {
+  res.render("ideas/index");
+});
+
 // Add idea form
 app.get("/ideas/add", (req, res) => {
   res.render("ideas/add");
