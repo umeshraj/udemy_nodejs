@@ -112,7 +112,18 @@ app.post("/ideas", (req, res) => {
 
 // Edit form process
 app.put("/ideas/:id", (req, res) => {
-  res.send("PUT");
+  // res.send("PUT");
+  Idea.findOne({
+    _id: req.params.id
+  }).then(idea => {
+    // new values
+    idea.title = req.body.title;
+    idea.details = req.body.details;
+
+    idea.save().then(idea => {
+      res.redirect("/ideas");
+    });
+  });
 });
 
 const port = 5000;
