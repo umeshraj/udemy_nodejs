@@ -1,5 +1,6 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
@@ -26,6 +27,8 @@ app.set("view engine", "handlebars");
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
+// override with POST having ?_method=DELETE
+app.use(methodOverride("_method"));
 
 // How middleware works
 app.use(function(req, res, next) {
@@ -105,6 +108,11 @@ app.post("/ideas", (req, res) => {
   }
   // console.log(req.body);
   // res.send("ok");
+});
+
+// Edit form process
+app.put("/ideas/:id", (req, res) => {
+  res.send("PUT");
 });
 
 const port = 5000;
