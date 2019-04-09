@@ -76,7 +76,7 @@ app.get("/ideas", (req, res) => {
   Idea.find({})
     .sort({ date: "desc" })
     .then(ideas => {
-      console.log(ideas);
+      // console.log(ideas);
       res.render("ideas/index", {
         ideas: ideas
       });
