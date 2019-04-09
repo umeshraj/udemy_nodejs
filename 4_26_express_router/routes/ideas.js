@@ -28,7 +28,7 @@ router.get("/edit/:id", (req, res) => {
   Idea.findOne({
     _id: req.params.id
   }).then(idea => {
-    res.render("/edit", {
+    res.render("ideas/edit", {
       idea: idea
     });
   });
