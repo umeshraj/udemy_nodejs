@@ -1,12 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+// Load routes
+const auth = require("./routes/auth");
+
 const app = express();
 
 // index
 app.get("/", (req, res) => {
   res.send("It works!");
 });
+
+// Use routes
+app.use("/auth", auth);
 
 // heroku
 const port = process.env.PORT || 5000;
