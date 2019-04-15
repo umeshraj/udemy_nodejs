@@ -9,4 +9,13 @@ router.get(
   })
 );
 
+// callback
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/" }),
+  (req, res) => {
+    res.redirect("/dashboard");
+  }
+);
+
 module.exports = router;
