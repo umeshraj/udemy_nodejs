@@ -1,4 +1,5 @@
 const express = require("express");
+const exphbs = require("express-handlebars");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
@@ -30,9 +31,18 @@ mongoose
 const app = express();
 
 // index
-app.get("/", (req, res) => {
-  res.send("It works!");
-});
+// app.get("/", (req, res) => {
+//   res.send("It works!");
+// });
+
+// handlebars middleware
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
+);
+app.set("view engine", "handlebars");
 
 app.use(cookieParser());
 app.use(
