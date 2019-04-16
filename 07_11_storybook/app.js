@@ -11,6 +11,7 @@ require("./models/User");
 require("./config/passport")(passport);
 
 // Load routes
+const index = require("./routes/index");
 const auth = require("./routes/auth");
 
 // Load keys
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 });
 
 // Use routes
+app.use("/", index);
 app.use("/auth", auth);
 
 // heroku
