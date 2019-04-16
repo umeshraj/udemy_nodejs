@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 const passport = require("passport");
 
 // load user model
@@ -30,6 +32,18 @@ const app = express();
 app.get("/", (req, res) => {
   res.send("It works!");
 });
+
+app.use(cookieParser());
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false
+  })
+);
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Use routes
 app.use("/auth", auth);
