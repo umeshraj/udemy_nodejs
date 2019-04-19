@@ -18,6 +18,10 @@
 
 <body>
   {{> _header}}
+  {{!-- Add story button is user is logged in --}}
+  {{#if user}}
+  {{> _add-btn}}
+  {{/if}}
   <main>
     <div class="container">
       {{{body}}}
