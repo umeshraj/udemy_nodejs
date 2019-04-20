@@ -1,13 +1,16 @@
 const express = require("express");
 const path = require("path");
 const exphbs = require("express-handlebars");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const passport = require("passport");
 
-// load user model
+// load models
 require("./models/User");
+require("./models/Story");
+require("./models/Sample");
 
 // passport config
 require("./config/passport")(passport);
@@ -31,6 +34,11 @@ mongoose
   .catch(err => console.log(err));
 
 const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
 // index
 // app.get("/", (req, res) => {
