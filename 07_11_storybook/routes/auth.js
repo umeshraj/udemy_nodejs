@@ -32,4 +32,9 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
+// edit form process
+router.put("/:id", (req, res) => {
+  res.send("put");
+});
+
 module.exports = router;
