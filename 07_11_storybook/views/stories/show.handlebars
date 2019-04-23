@@ -40,7 +40,7 @@
         {{!-- Google profile id chip --}}
         <div class="chip">
           <img src="{{commentUser.image}}" alt="Contact Person">
-          {{commentUser.firstName}}{{commentUser.lastName}}
+          <a href="/stories/user/{{commentUser.id}}">{{commentUser.firstName}}{{commentUser.lastName}}</a>
         </div>
         <br>
         <small>Posted: {{formatDate commentDate 'MMMM Do YYYY'}}</small>
