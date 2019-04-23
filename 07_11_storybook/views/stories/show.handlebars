@@ -27,6 +27,23 @@
       </div>
     </div>
     {{/if}}
+
+    {{!-- comments --}}
+    {{#each story.comments}}
+    <div class="card">
+      <div class="card-content">
+        <h5>{{commentBody}}</h5>
+
+        {{!-- Google profile id chip --}}
+        <div class="chip">
+          <img src="{{commentUser.image}}" alt="Contact Person">
+          {{commentUser.firstName}}{{commentUser.lastName}}
+        </div>
+        <br>
+        <small>Posted: {{formatDate commentDate 'MMMM Do YYYY'}}</small>
+      </div>
+    </div>
+    {{/each}}
   </div>
 
   <div class="col s12 m4">
