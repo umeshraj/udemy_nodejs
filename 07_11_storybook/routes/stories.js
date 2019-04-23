@@ -41,9 +41,13 @@ router.get("/edit/:id", ensureAuthenticated, (req, res) => {
   Story.findOne({
     _id: req.params.id
   }).then(story => {
-    res.render("stories/edit", {
-      story: story
-    });
+    if (story.user != req.user.id) {
+      res.redirect("/stories");
+    } else {
+      res.render("stories/edit", {
+        story: story
+      });
+    }
   });
 });
 
